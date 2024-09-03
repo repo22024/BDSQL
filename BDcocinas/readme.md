@@ -1,7 +1,5 @@
 ### Base de datos Cocinas
-La base de datos cocinas es una base de datos desarrde ejemplo que se utiliza comúnmente para aprender y practicar SQL
-Fue creada por Microsoft. Inicialmente esta base de datos estaba disponible para
-Acces y posteriormente para SQL Server.
+La base de datos cocinas es una base de datos desarrollada por un pequeño grupo de amantes de las bases de datos dentro del marco formativo de Consulta y manipulación de información contenida en gestores de datos
 
 ### Licencia
 [LICENSE](https://github.com/repo22024/proyectoAzul/blob/80eb7f287e27d936ead7e047dd9755196bc1bb35/LICENSE)
