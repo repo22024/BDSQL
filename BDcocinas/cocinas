@@ -1,0 +1,254 @@
+CREATE DATABASE  IF NOT EXISTS `cocinaevaluacion` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `cocinaevaluacion`;
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+--
+-- Host: localhost    Database: cocinaevaluacion
+-- ------------------------------------------------------
+-- Server version	8.0.37
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `auditoria_correcciones`
+--
+
+DROP TABLE IF EXISTS `auditoria_correcciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auditoria_correcciones` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `tabla` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `campo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `valor_incorrecto` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `valor_corregido` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `fecha_hora` datetime DEFAULT NULL,
+  `usuario` varchar(45) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auditoria_correcciones`
+--
+
+LOCK TABLES `auditoria_correcciones` WRITE;
+/*!40000 ALTER TABLE `auditoria_correcciones` DISABLE KEYS */;
+INSERT INTO `auditoria_correcciones` VALUES (1,'compras','CANTIDAD','0','1','2024-07-09 19:23:00','root@localhost'),(2,'compras','CANTIDAD','-8','1','2024-07-09 19:24:08','root@localhost');
+/*!40000 ALTER TABLE `auditoria_correcciones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cliente`
+--
+
+DROP TABLE IF EXISTS `cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cliente` (
+  `idCLIENTE` int NOT NULL,
+  `NIFCLIENTE` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
+  `NOMBRECLIENTE` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `DIRECCIONCLIENTE` text COLLATE utf8mb4_general_ci NOT NULL,
+  `TELEFONOCLIENTE` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`idCLIENTE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cliente`
+--
+
+LOCK TABLES `cliente` WRITE;
+/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
+INSERT INTO `cliente` VALUES (1,'54052635H','MARY CARMEN GUERRERO','CALLE BUENA VISTA Nº 6','922895623'),(2,'78635241T','MARCO MICHIOTI LUNE','CALLE LUPILLO EDIFICIO AMARGO Nº5 1PB','922784512'),(3,'12345678A','Pedro Martinez','Avenida Sol N° 10','654321987'),(4,'87654321B','Lucia Fernandez','Calle Luna N° 20','789456123'),(5,'11223344C','Juan Perez','Plaza Mayor N° 5','321654987'),(6,'22334455D','Ana Lopez','Calle Flor N° 3','741258963'),(7,'33445566E','Jose Sanchez','Avenida Mar N° 12','852369741'),(8,'44556677G','Sofia Torres','Calle Amanecer Nº 4','912345678'),(9,'55667788H','Luis Rivera','Avenida Paz Nº 15','923456789'),(10,'66778899I','Miguel Angel','Calle Estrella Nº 9','934567890');
+/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cocinas`
+--
+
+DROP TABLE IF EXISTS `cocinas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cocinas` (
+  `idCOCINA` varchar(9) COLLATE utf8mb4_general_ci NOT NULL,
+  `NOMBRECOCINA` varchar(60) COLLATE utf8mb4_general_ci NOT NULL,
+  `PRECIOCOCINA` decimal(10,2) NOT NULL,
+  `DESCUENTO` int DEFAULT NULL,
+  `FECHALIMITE` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`idCOCINA`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cocinas`
+--
+
+LOCK TABLES `cocinas` WRITE;
+/*!40000 ALTER TABLE `cocinas` DISABLE KEYS */;
+INSERT INTO `cocinas` VALUES ('MODELO1','EVEREST',1200.00,15,'2024-12-31 00:00:00'),('MODELO11','GLACIER',1700.00,20,'2024-12-31 00:00:00'),('MODELO12','MOUNTAIN',1400.00,15,'2024-12-31 00:00:00'),('MODELO2','TEIDE',1500.00,25,'2024-12-31 00:00:00'),('MODELO3','CHERRY',2000.00,30,'2024-12-31 00:00:00'),('MODELO4','SIERRA',1300.00,10,'2024-12-31 00:00:00'),('MODELO5','ALPINA',1100.00,5,'2024-12-31 00:00:00'),('MODELO6','TUNDRA',1800.00,20,'2024-12-31 00:00:00'),('MODELO7','ANDES',1600.00,18,'2024-12-31 00:00:00');
+/*!40000 ALTER TABLE `cocinas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `compras`
+--
+
+DROP TABLE IF EXISTS `compras`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `compras` (
+  `idCOMPRA` int NOT NULL,
+  `COCINAS_idCOCINA` varchar(9) COLLATE utf8mb4_general_ci NOT NULL,
+  `CLIENTE_idCLIENTE` int NOT NULL,
+  `CANTIDAD` int NOT NULL,
+  `FECHACOMPRA` date NOT NULL,
+  `OBSERVACIONES` text COLLATE utf8mb4_general_ci,
+  PRIMARY KEY (`idCOMPRA`),
+  KEY `fk_COCINAS_has_CLIENTE_CLIENTE1_idx` (`CLIENTE_idCLIENTE`),
+  KEY `fk_COCINAS_has_CLIENTE_COCINAS_idx` (`COCINAS_idCOCINA`),
+  CONSTRAINT `fk_COCINAS_has_CLIENTE_CLIENTE1` FOREIGN KEY (`CLIENTE_idCLIENTE`) REFERENCES `cliente` (`idCLIENTE`),
+  CONSTRAINT `fk_COCINAS_has_CLIENTE_COCINAS` FOREIGN KEY (`COCINAS_idCOCINA`) REFERENCES `cocinas` (`idCOCINA`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `compras`
+--
+
+LOCK TABLES `compras` WRITE;
+/*!40000 ALTER TABLE `compras` DISABLE KEYS */;
+INSERT INTO `compras` VALUES (1,'MODELO1',1,2,'2024-07-27',NULL),(2,'MODELO2',1,2,'2024-07-27',NULL),(3,'MODELO3',2,1,'2024-07-27','El cliente no quiere instalacion'),(4,'MODELO3',2,1,'2024-07-09','Sin observaciones'),(5,'MODELO1',2,1,'2024-07-09','El cliente se va de viaje hasta septiembre, nos llama'),(6,'MODELO3',1,1,'2024-07-09','Sin observaciones'),(7,'MODELO3',1,1,'2024-07-09','Sin observaciones'),(8,'MODELO1',1,2,'2024-07-27','Sin observaciones'),(9,'MODELO2',2,1,'2024-07-28','Entrega urgente'),(10,'MODELO3',3,3,'2024-07-29','Sin instalación'),(11,'MODELO4',4,2,'2024-07-30','Sin observaciones'),(12,'MODELO5',5,1,'2024-07-31','Sin observaciones'),(13,'MODELO4',7,2,'2024-08-01','Cliente satisfecho'),(14,'MODELO5',8,1,'2024-08-02','Entrega urgente'),(15,'MODELO6',9,3,'2024-08-03','Sin observaciones');
+/*!40000 ALTER TABLE `compras` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_before_insert_observa` BEFORE INSERT ON `compras` FOR EACH ROW BEGIN
+    IF NEW.OBSERVACIONES IS NULL
+    THEN SET NEW.OBSERVACIONES="Sin observaciones";
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `trg_before_insert_compras_cantidad` BEFORE INSERT ON `compras` FOR EACH ROW BEGIN
+	IF NEW.CANTIDAD <= 0 THEN
+    insert into auditoria_correcciones (id, tabla,campo,valor_incorrecto,valor_corregido,fecha_hora,usuario)
+    values (default, "compras", "CANTIDAD", NEW.CANTIDAD, "1", current_timestamp(), user());
+    SET NEW.CANTIDAD=1;
+    END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `instalacion`
+--
+
+DROP TABLE IF EXISTS `instalacion`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `instalacion` (
+  `idINSTALACION` int NOT NULL,
+  `INSTALADORES_idINSTALADOR` int NOT NULL,
+  `COMPRA(COCINAS_has_CLIENTE)_idCOMPRA` int NOT NULL,
+  `FECHA` date NOT NULL,
+  `ESTADO` enum('PENDIENTE','EN PROCESO','FINALIZADO','NO ASIGNADO') COLLATE utf8mb4_general_ci NOT NULL,
+  `FECHAINSTALACION/ENTREGA` date DEFAULT NULL,
+  `DIRECCION` text COLLATE utf8mb4_general_ci NOT NULL,
+  `HORARIO` enum('MAÑANA','TARDE') COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`idINSTALACION`),
+  KEY `fk_INSTALADORES_has_COMPRA(COCINAS_has_CLIENTE)_COMPRA(COCI_idx` (`COMPRA(COCINAS_has_CLIENTE)_idCOMPRA`),
+  KEY `fk_INSTALADORES_has_COMPRA(COCINAS_has_CLIENTE)_INSTALADORE_idx` (`INSTALADORES_idINSTALADOR`),
+  CONSTRAINT `fk_INSTALADORES_has_COMPRA(COCINAS_has_CLIENTE)_COMPRA(COCINA1` FOREIGN KEY (`COMPRA(COCINAS_has_CLIENTE)_idCOMPRA`) REFERENCES `compras` (`idCOMPRA`),
+  CONSTRAINT `fk_INSTALADORES_has_COMPRA(COCINAS_has_CLIENTE)_INSTALADORES1` FOREIGN KEY (`INSTALADORES_idINSTALADOR`) REFERENCES `instaladores` (`idINSTALADOR`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `instalacion`
+--
+
+LOCK TABLES `instalacion` WRITE;
+/*!40000 ALTER TABLE `instalacion` DISABLE KEYS */;
+INSERT INTO `instalacion` VALUES (1,1,1,'2024-07-02','FINALIZADO','2024-07-05','Calle Lope de Vega nº 3 Arona','MAÑANA'),(2,2,1,'2024-07-02','FINALIZADO','2024-07-05','Calle Roberto verino Nº 7 santa Cruz de Tenerife','MAÑANA'),(3,0,3,'2024-07-09','FINALIZADO',NULL,'Calle Teide, edificio Nieve Nº 8 S/C','TARDE'),(4,1,1,'2024-07-27','PENDIENTE','2024-07-30','Avenida Sol N° 10','MAÑANA'),(5,2,2,'2024-07-28','PENDIENTE','2024-07-31','Calle Luna N° 20','TARDE'),(6,3,3,'2024-07-29','NO ASIGNADO',NULL,'Plaza Mayor N° 5','MAÑANA'),(7,4,4,'2024-07-30','PENDIENTE','2024-08-01','Calle Flor N° 3','TARDE'),(8,5,5,'2024-07-31','PENDIENTE','2024-08-02','Avenida Mar N° 12','MAÑANA'),(9,1,13,'2024-08-01','PENDIENTE','2024-08-05','Calle Luna Nº 2','TARDE'),(10,2,14,'2024-08-02','PENDIENTE','2024-08-06','Avenida Sol Nº 4','MAÑANA'),(11,3,15,'2024-08-03','EN PROCESO','2024-08-07','Calle Amanecer Nº 6','TARDE'),(12,0,4,'2024-08-01','NO ASIGNADO',NULL,'Calle Mirador N° 14','TARDE'),(13,0,5,'2024-08-02','NO ASIGNADO',NULL,'Avenida del Parque N° 22','MAÑANA'),(14,0,6,'2024-08-03','NO ASIGNADO',NULL,'Plaza del Sol N° 15','TARDE'),(15,0,7,'2024-08-04','NO ASIGNADO',NULL,'Callejón del Pino N° 8','MAÑANA'),(16,0,8,'2024-08-05','NO ASIGNADO',NULL,'Avenida de la Paz N° 10','TARDE');
+/*!40000 ALTER TABLE `instalacion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `instaladores`
+--
+
+DROP TABLE IF EXISTS `instaladores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `instaladores` (
+  `idINSTALADOR` int NOT NULL,
+  `NIF` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
+  `NOMBREINSTALADOR` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `APELLIDOINSTALADOR` varchar(45) COLLATE utf8mb4_general_ci NOT NULL,
+  `TELEFONOINSTALADOR` varchar(12) COLLATE utf8mb4_general_ci NOT NULL,
+  `DIRECCIONINSTALADOR` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`idINSTALADOR`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `instaladores`
+--
+
+LOCK TABLES `instaladores` WRITE;
+/*!40000 ALTER TABLE `instaladores` DISABLE KEYS */;
+INSERT INTO `instaladores` VALUES (0,'NO ASIGNADO','NO ASIGNADO','NO ASIGNADO','NO ASIGNADO','NO ASIGNADO'),(1,'79526341A','RAMÓN','PÉREZ','633895623','CALLE LUIS MIGUEL Nº 5 LAGUNA'),(2,'79635241B','DOMINGO','BATISTA','645124578','CALLE ALEJANDRO SANZ Nº7 S/C'),(3,'79746352C','MIGUEL','GARCIA','657895123','CALLE FLOR Nº 8 S/C'),(4,'79857463D','JUAN','LOPEZ','661258963','CALLE ROSA Nº 9 LA LAGUNA'),(5,'79968574E','CARLOS','MARTINEZ','672369741','CALLE MAR Nº 10 PUERTO DE LA CRUZ'),(6,'80012345F','Fernando','Gomez','676543210','Calle Primavera Nº 1'),(7,'80123456G','Carlos','Hernandez','687654321','Avenida Verano Nº 2');
+/*!40000 ALTER TABLE `instaladores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'cocinaevaluacion'
+--
+
+--
+-- Dumping routines for database 'cocinaevaluacion'
+--
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-09-03 17:20:43
