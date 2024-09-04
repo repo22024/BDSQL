@@ -1,0 +1,105 @@
+#Propuestas de consulta 
+#Pega este fichero en un nuevo Script de Workbench y comprueba que hacen las consultas
+
+#Consultas Básicas
+#Seleccionar todos los clientes:
+SELECT * FROM cliente;
+
+#Obtener el total de cocinas disponibles:
+SELECT COUNT(*) AS TotalCocinas FROM cocinas;
+
+#Mostrar las compras realizadas por un cliente específico (por ejemplo, cliente con ID 1):
+SELECT * FROM compras WHERE CLIENTE_idCLIENTE = 1;
+
+#Listar todos los instaladores que tienen una asignación en curso ("EN PROCESO"):
+SELECT * FROM instaladores i
+JOIN instalacion ins ON i.idINSTALADOR = ins.INSTALADORES_idINSTALADOR
+WHERE ins.ESTADO = 'EN PROCESO';
+
+#Obtener el total de compras realizadas en una fecha específica (por ejemplo, '2024-07-27'):
+SELECT COUNT(*) AS TotalCompras FROM compras WHERE FECHACOMPRA = '2024-07-27';
+
+#Seleccionar los nombres y precios de todas las cocinas con un descuento superior al 10%:
+SELECT NOMBRECOCINA, PRECIOCOCINA FROM cocinas WHERE DESCUENTO > 10;
+
+#Mostrar los nombres de los clientes y el número total de compras que han realizado:
+SELECT c.NOMBRECLIENTE, COUNT(co.idCOMPRA) AS TotalCompras
+FROM cliente c
+LEFT JOIN compras co ON c.idCLIENTE = co.CLIENTE_idCLIENTE
+GROUP BY c.NOMBRECLIENTE;
+
+#Mostrar todas las compras ordenadas por fecha de compra de más reciente a más antigua:
+SELECT * FROM compras ORDER BY FECHACOMPRA DESC;
+
+#Seleccionar todas las correcciones realizadas en la tabla compras:
+SELECT * FROM auditoria_correcciones WHERE tabla = 'compras';
+
+#Mostrar el cliente con el mayor número de compras:
+SELECT CLIENTE_idCLIENTE, COUNT(*) AS TotalCompras
+FROM compras
+GROUP BY CLIENTE_idCLIENTE
+ORDER BY TotalCompras DESC
+LIMIT 1;
+
+#Consultas Complejas
+#Obtener el total de ingresos generados por las ventas de todas las cocinas, considerando la cantidad vendida:
+SELECT SUM(c.PRECIOCOCINA * co.CANTIDAD) AS TotalIngresos
+FROM cocinas c
+JOIN compras co ON c.idCOCINA = co.COCINAS_idCOCINA;
+
+#Listar los clientes que han realizado más de una compra, junto con el número de compras realizadas:
+SELECT c.NOMBRECLIENTE, COUNT(co.idCOMPRA) AS TotalCompras
+FROM cliente c
+JOIN compras co ON c.idCLIENTE = co.CLIENTE_idCLIENTE
+GROUP BY c.NOMBRECLIENTE
+HAVING TotalCompras > 1;
+
+#Mostrar los datos de los clientes que han comprado cocinas con un descuento mayor al 15%:
+SELECT cl.*
+FROM cliente cl
+JOIN compras co ON cl.idCLIENTE = co.CLIENTE_idCLIENTE
+JOIN cocinas c ON co.COCINAS_idCOCINA = c.idCOCINA
+WHERE c.DESCUENTO > 15;
+
+#Obtener el nombre de la cocina más vendida:
+SELECT c.NOMBRECOCINA, SUM(co.CANTIDAD) AS TotalVendidas
+FROM cocinas c
+JOIN compras co ON c.idCOCINA = co.COCINAS_idCOCINA
+GROUP BY c.NOMBRECOCINA
+ORDER BY TotalVendidas DESC
+LIMIT 1;
+
+#Encontrar todas las instalaciones pendientes y mostrar la información del cliente y el instalador involucrado:
+SELECT cl.NOMBRECLIENTE, i.NOMBREINSTALADOR, ins.*
+FROM instalacion ins
+JOIN compras co ON ins.`COMPRA(COCINAS_has_CLIENTE)_idCOMPRA` = co.idCOMPRA
+JOIN cliente cl ON co.CLIENTE_idCLIENTE = cl.idCLIENTE
+JOIN instaladores i ON ins.INSTALADORES_idINSTALADOR = i.idINSTALADOR
+WHERE ins.ESTADO = 'PENDIENTE';
+
+#Mostrar las correcciones realizadas por un usuario específico ('root@localhost'):
+SELECT * FROM auditoria_correcciones WHERE usuario = 'root@localhost';
+
+#Obtener el promedio del precio de cocinas con un descuento del 20% o más:
+SELECT AVG(PRECIOCOCINA) AS PrecioPromedio
+FROM cocinas
+WHERE DESCUENTO >= 20;
+
+#Mostrar todas las compras agrupadas por cliente y ordenadas por la fecha de compra más reciente:
+SELECT cl.NOMBRECLIENTE, co.*
+FROM cliente cl
+JOIN compras co ON cl.idCLIENTE = co.CLIENTE_idCLIENTE
+ORDER BY cl.NOMBRECLIENTE, co.FECHACOMPRA DESC;
+
+#Listar todas las cocinas y la cantidad total vendida de cada una:
+SELECT c.NOMBRECOCINA, SUM(co.CANTIDAD) AS TotalVendida
+FROM cocinas c
+LEFT JOIN compras co ON c.idCOCINA = co.COCINAS_idCOCINA
+GROUP BY c.NOMBRECOCINA;
+
+#Obtener el estado de todas las instalaciones junto con el nombre del instalador y la cocina instalada:
+SELECT i.NOMBREINSTALADOR, ins.ESTADO, co.COCINAS_idCOCINA, c.NOMBRECOCINA
+FROM instalacion ins
+JOIN instaladores i ON ins.INSTALADORES_idINSTALADOR = i.idINSTALADOR
+JOIN compras co ON ins.`COMPRA(COCINAS_has_CLIENTE)_idCOMPRA` = co.idCOMPRA
+JOIN cocinas c ON co.COCINAS_idCOCINA = c.idCOCINA;
