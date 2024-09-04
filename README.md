@@ -28,6 +28,7 @@ Para utilizar cualquier de las bases de datos, navega a la carpeta correspondien
 
 - [Ventas](./ventas/README.md)
 - [Gimnasio](./gimnasio/README.md)
-- [Cocinas](./Cocinas/README.md)
+- [Cocinas](./BDcocinas/README.md)
+  
 
 ¡Explora cada carpeta para más detalles y disfruta de las bases de datos!
