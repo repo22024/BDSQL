@@ -26,7 +26,7 @@ Para utilizar cualquier de las bases de datos, navega a la carpeta correspondien
 
 ## 🔗 Enlaces Rápidos
 
-- [Ventas](BDventas/README.md)
+- [Ventas](BDventas/readme.md)
 - [Gimnasio](BDgimnasio/readme.md)
 - [Cocinas](BDcocinas/readme.md)
   
