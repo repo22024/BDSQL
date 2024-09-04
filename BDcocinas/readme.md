@@ -29,7 +29,7 @@ Este repositorio contiene la estructura y datos de la base de datos **"cocinaeva
 2. Crear la Base de Datos
 Utiliza el script cocinaevaluacion.sql proporcionado en el repositorio para crear la base de datos. Abre MySQL Workbench o cualquier cliente de MySQL, ejecuta el siguiente comando para crear la base de datos y cargar los datos:
 
-### Estructura de la Base de Datos
+## Estructura de la Base de Datos
 La base de datos cocinaevaluacion contiene las siguientes tablas:
 cliente: Contiene información sobre los clientes, como el NIF, nombre, dirección y teléfono.
 cocinas: Incluye detalles sobre los modelos de cocinas, como ID, nombre, precio, descuento y fecha límite de descuento.
@@ -38,7 +38,7 @@ auditoria_correcciones: Registra las auditorías y correcciones automáticas de 
 instalacion: Detalla las instalaciones de cocinas, incluyendo ID, fecha, estado, dirección y horario.
 instaladores: Contiene la información de los instaladores, como ID, NIF, nombre, apellido, teléfono y dirección.
 
-### Consultas SQL
+## Consultas SQL
 Obtener todos los clientes
 SELECT * FROM cliente;
 Obtener todas las cocinas disponibles con su precio y descuento
@@ -52,16 +52,16 @@ SELECT i.NOMBREINSTALADOR, inl.ESTADO, inl.DIRECCION
 FROM instaladores i 
 JOIN instalacion inl ON i.idINSTALADOR = inl.INSTALADORES_idINSTALADOR;
 
-### Triggers y Funciones
+## Triggers y Funciones
 Triggers en la Base de Datos
 tr_before_insert_observa: Asigna automáticamente el valor "Sin observaciones" al campo OBSERVACIONES en la tabla compras si está vacío al insertar.
 trg_before_insert_compras_cantidad: Verifica que la cantidad de compras no sea menor o igual a cero. Si lo es, registra la corrección en la tabla auditoria_correcciones y establece la cantidad en 1.
-### Uso
+## Uso
 Esta base de datos es útil para:
 Administrar la información de clientes y sus compras de cocinas.
 Realizar auditorías y corregir errores automáticamente.
 Gestionar instalaciones de cocinas por parte de diferentes instaladores.
-### Ejemplo de Uso
+## Ejemplo de Uso
 Listar todos los clientes registrados en el sistema:
 SELECT * FROM cliente;
 Verificar las compras realizadas en un mes específico:
@@ -73,12 +73,12 @@ El trigger tr_before_insert_observa se ejecutará automáticamente al insertar u
 Corregir automáticamente la cantidad de compras erróneas:
 Si se inserta una compra con una cantidad menor o igual a cero, el trigger trg_before_insert_compras_cantidad corregirá la cantidad a 1 y registrará la corrección en auditoria_correcciones.
 
-### Contribución
+## Contribución
 Si deseas contribuir a este proyecto:
 Haz un fork del repositorio.
 Crea una rama 
 Realiza tus cambios y haz commit (git commit -am 'Añadir nueva funcionalidad').
 Haz push a la rama (git push origin feature/nueva-funcionalidad).
 Abre un Pull Request.
-### Licencia
+## Licencia
 Este proyecto se encuentra bajo la Licencia MIT. Para más detalles, consulta el archivo LICENSE.
