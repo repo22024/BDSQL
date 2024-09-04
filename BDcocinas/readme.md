@@ -26,3 +26,5 @@ Este repositorio contiene la estructura y datos de la base de datos **"cocinaeva
    Clona este repositorio en tu máquina local:
    ```sh
    git clone https://github.com/tu_usuario/cocinaevaluacion.git
+2. Crear la Base de Datos
+Utiliza el script cocinaevaluacion.sql proporcionado en el repositorio para crear la base de datos. Abre MySQL Workbench o cualquier cliente de MySQL, ejecuta el siguiente comando para crear la base de datos y cargar los datos:
