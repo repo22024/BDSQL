@@ -1,4 +1,4 @@
-### Base de Datos "CocinaEvaluacion"
+### Base de Datos "Cocinas"
 
 Este repositorio contiene la estructura y datos de la base de datos **"cocinaevaluacion"** desarrollada en MySQL. Esta base de datos está diseñada para gestionar la información relacionada con clientes, compras de cocinas, instalación de cocinas y auditorías de correcciones en un entorno de venta de cocinas. El desarrollo y pruebas se realizaron en **Windows 10**.
 
