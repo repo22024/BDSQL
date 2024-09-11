@@ -4,7 +4,7 @@ Este repositorio contiene la estructura y datos de la base de datos **"cocinaeva
 
 ### Tabla de Contenidos
 
-- [Requisitos](#requisitos)
+- [Requisitos](#Requisitos)
 - [Instalación](#instalación)
 - [Estructura de la Base de Datos](#estructura-de-la-base-de-datos)
 - [Consultas SQL](#consultas-sql)
